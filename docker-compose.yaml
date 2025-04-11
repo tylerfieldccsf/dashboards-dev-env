@@ -1,0 +1,15 @@
+services:
+  my-jekyll-container:
+    image: my-ruby-env:latest # This is image which built in step 2
+    container_name: local_jekyll
+    # restart: always
+    tty: true
+    volumes:
+      - ./app:/app
+      - ./conf:/etc/nginx/conf.d # For nginx setting
+    ports:
+      - "8080:80"
+    # command: [sh, -c, "cd dashboards-2025 && bundle install && bundle exec jekyll serve"]
+networks:
+  my-network:
+    driver: bridge
